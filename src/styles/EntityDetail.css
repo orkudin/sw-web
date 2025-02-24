@@ -1,0 +1,42 @@
+.entity-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  .entity-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+  }
+  
+  .entity-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .entity-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .entity-key {
+    font-weight: bold;
+    color: #f4d03f;
+  }
+  
+  .entity-value {
+    text-align: right;
+    color: #d5dbdb;
+  }
+  

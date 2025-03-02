@@ -29,7 +29,7 @@ const Vehicles = () => {
       <h2 className="resource-title">Транспорт</h2>
       <div className="resource-list">
         {vehicles.map((vehicle) => {
-          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
+          // Извлекаем id персонажа из URL
           const vehicleId = vehicle.url.split("/").slice(-2, -1)[0];
           return (
             <Link

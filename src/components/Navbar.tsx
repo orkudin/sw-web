@@ -12,6 +12,7 @@ const Navbar = () => {
         <li><Link to="/films">Фильмы</Link></li>
         <li><Link to="/species">Расы</Link></li>
         <li><Link to="/vehicles">Транспорт</Link></li>
+        <li><a href="https://swapi.dev/documentation">Документация: swapi.dev</a></li>
       </ul>
     </nav>
   );

@@ -28,7 +28,7 @@ const Planets = () => {
       <h2 className="resource-title">Планеты</h2>
       <div className="resource-list">
         {planets.map((planet) => {
-          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
+          // Извлекаем id персонажа из URL
           const planetId = planet.url.split("/").slice(-2, -1)[0];
           return (
             <Link

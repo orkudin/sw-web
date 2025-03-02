@@ -28,7 +28,7 @@ const Starships = () => {
       <h2 className="resource-title">Корабли</h2>
       <div className="resource-list">
         {starships.map((starship) => {
-          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
+          // Извлекаем id персонажа из URL
           const starshipId = starship.url.split("/").slice(-2, -1)[0];
           return (
             <Link

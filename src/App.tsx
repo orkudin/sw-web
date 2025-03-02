@@ -23,7 +23,7 @@ function App() {
           <Route path="/planets/:id" element={<EntityDetail type="planets" />} />
           <Route path="/starships" element={<Starships />} />
           <Route path="/starships/:id" element={<EntityDetail type="starships" />} />
-          <Route path="/films" element={<Films />} />
+          <Route path="/films" element={<Films  key={window.location.pathname}/>} />
           <Route path="/films/:id" element={<EntityDetail key={window.location.pathname} type="films" />} />
           <Route path="/species" element={<Species />} />
           <Route path="/species/:id" element={<EntityDetail type="species" />} />

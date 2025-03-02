@@ -1,9 +1,10 @@
-import Loader from "../../components/Loader";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/PaginationBar";
 import { useState } from "react";
 import useSwapiPagination from "../../hooks/useSwapiPagination";
-import { People as PeopleType} from "../../types/People";
+import { People as PeopleType } from "../../types/People";
+import Loader from "../../components/Loader";
+import "../../styles/People.css";
 
 const People = () => {
   const [page, setPage] = useState(1);
@@ -11,25 +12,33 @@ const People = () => {
   const itemsPerPage = 10; // API возвращает 10 элементов на страницу по умолчанию
 
   if (loading) return <Loader />;
-  if (error) return <div>Ошибка: {String(error)}</div>;
+  if (error) return <div className="error">Ошибка: {String(error)}</div>;
 
   return (
-    <div>
-      <h2>Персонажи</h2>
-      <ul>
-      {peoples.map((people) => {
-          // Извлекаем id фильма из URL
+    <div className="people-container">
+      <h2 className="people-title">Персонажи</h2>
+      <div className="people-list">
+        {peoples.map((people) => {
+          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
           const peopleId = people.url.split("/").slice(-2, -1)[0];
           return (
-            <li key={people.url}>
-              {/* Передаем весь объект фильма через state */}
-              <Link to={`/people/${peopleId}`} state={{ people }}>
-                {people.name}
-              </Link>
-            </li>
+            <Link
+              key={people.url}
+              to={`/people/${peopleId}`}
+              state={{ people }}
+              className="people-card"
+            >
+              <div className="card-content">
+                <h3 className="people-name">{people.name}</h3>
+                <p className="people-info">
+                  {people.gender && `Пол: ${people.gender}`}<br />
+                  {people.birth_year && `Год рождения: ${people.birth_year}`}
+                </p>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Pagination
         page={page}
         setPage={setPage}
@@ -39,4 +48,5 @@ const People = () => {
     </div>
   );
 };
+
 export default People;

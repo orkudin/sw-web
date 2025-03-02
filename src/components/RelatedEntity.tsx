@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchData } from "../api/swapi";
 
 interface SWAPIEntity {
+  url: string;
   name?: string;
   title?: string;
   [key: string]: unknown;
@@ -36,15 +37,15 @@ const RelatedEntity = ({ url }: RelatedEntityProps) => {
   if (loading) return <span>Загрузка...</span>;
   if (!entity) return <span>Не найдено</span>;
 
-  const displayName = entity.title || entity.name ||  "Нет названия"; 
-
-console.log(endpoint, id)
+  const displayName = entity.title || entity.name || "Нет названия";
 
   return (
-    <Link to={`/${endpoint}/${id}`} state={{ endpoint }}>
-      {displayName}
-    </Link>
-    
+    <li>
+      {/* Передаём полностью загруженный объект через state */}
+      <Link to={`/${endpoint}/${id}`} state={{ entity }}>
+        {displayName}
+      </Link>
+    </li>
   );
 };
 

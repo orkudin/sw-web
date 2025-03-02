@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import Loader from "../../components/Loader";
 import { Planet } from "../../types/Planet";
 import { Link } from "react-router-dom";
@@ -7,7 +7,12 @@ import useSwapiPagination from "../../hooks/useSwapiPagination";
 
 const Planets = () => {
   const [page, setPage] = useState(1);
-  const { data: planets, totalCount, loading, error } = useSwapiPagination<Planet>("planets", page);
+  const {
+    data: planets,
+    totalCount,
+    loading,
+    error,
+  } = useSwapiPagination<Planet>("planets", page);
   const itemsPerPage = 10; // API возвращает 10 элементов на страницу по умолчанию
 
   if (loading) return <Loader />;
@@ -15,9 +20,9 @@ const Planets = () => {
 
   return (
     <div>
-      <h2>Планеты</h2> 
+      <h2>Планеты</h2>
       <ul>
-      {planets.map((planet) => {
+        {planets.map((planet) => {
           // Извлекаем id фильма из URL
           const planetId = planet.url.split("/").slice(-2, -1)[0];
           return (

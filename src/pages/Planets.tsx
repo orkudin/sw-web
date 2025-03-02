@@ -18,11 +18,20 @@ const Planets = () => {
   if (loading) return <Loader />;
   return (
     <div>
-      <h2>Планеты</h2>
+      <h2>Планеты</h2> 
       <ul>
-        {planets.map(p => (
-          <li key={p.url}><Link to={`/planets/${p.url.split("/").slice(-2, -1)[0]}`}>{p.name}</Link></li>
-        ))}
+      {planets.map((planet) => {
+          // Извлекаем id фильма из URL
+          const planetId = planet.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={planet.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/planets/${planetId}`} state={{ planet }}>
+                {planet.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

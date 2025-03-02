@@ -6,7 +6,7 @@ import type { People as PeopleType } from "../types/People";
 import Pagination from "../components/PaginationBar";
 
 const People = () => {
-  const [people, setPeople] = useState<PeopleType[]>([]);
+  const [peoples, setPeoples] = useState<PeopleType[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState<number | null>(null); // totalCount может быть null
@@ -33,7 +33,7 @@ const People = () => {
       )
     )
       .then(results => {
-        setPeople(results);
+        setPeoples(results);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -47,11 +47,18 @@ const People = () => {
     <div>
       <h2>Персонажи</h2>
       <ul>
-        {people.map(p => (
-          <li key={p.url}>
-            <Link to={`/people/${p.url.split("/").slice(-2, -1)[0]}`}>{p.name}</Link>
-          </li>
-        ))}
+      {peoples.map((people) => {
+          // Извлекаем id фильма из URL
+          const peopleId = people.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={people.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/people/${peopleId}`} state={{ people }}>
+                {people.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <Pagination
         page={page}

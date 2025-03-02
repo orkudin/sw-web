@@ -9,7 +9,7 @@ const Films = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData("films").then(data => {
+    fetchData("films").then((data) => {
       setFilms(data.results);
       setLoading(false);
     });
@@ -20,11 +20,21 @@ const Films = () => {
     <div>
       <h2>Фильмы</h2>
       <ul>
-        {films.map(p => (
-          <li key={p.url}><Link to={`/films/${p.url.split("/").slice(-2, -1)[0]}`}>{p.title}</Link></li>
-        ))}
+        {films.map((film) => {
+          // Извлекаем id фильма из URL
+          const filmId = film.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={film.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/films/${filmId}`} state={{ film }}>
+                {film.title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
+
 export default Films;

@@ -20,9 +20,18 @@ const Vehicles = () => {
     <div>
       <h2>Транспорт</h2>
       <ul>
-        {vehicles.map(p => (
-          <li key={p.url}><Link to={`/vehicles/${p.url.split("/").slice(-2, -1)[0]}`}>{p.name}</Link></li>
-        ))}
+      {vehicles.map((vehicle) => {
+          // Извлекаем id фильма из URL
+          const vehicleId = vehicle.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={vehicle.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/vehicles/${vehicleId}`} state={{ vehicle }}>
+                {vehicle.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

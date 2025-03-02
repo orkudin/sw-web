@@ -20,6 +20,19 @@ const Starships = () => {
     <div>
       <h2>Корабли</h2>
       <ul>
+      {starships.map((starship) => {
+          // Извлекаем id фильма из URL
+          const starshipId = starship.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={starship.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/starships/${starshipId}`} state={{ starship }}>
+                {starship.name}
+              </Link>
+            </li>
+          );
+        })}
+
         {starships.map(p => (
           <li key={p.url}><Link to={`/starships/${p.url.split("/").slice(-2, -1)[0]}`}>{p.name}</Link></li>
         ))}

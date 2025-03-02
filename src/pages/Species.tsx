@@ -20,9 +20,18 @@ const Species = () => {
     <div>
       <h2>Расы</h2>
       <ul>
-        {species.map(p => (
-          <li key={p.url}><Link to={`/species/${p.url.split("/").slice(-2, -1)[0]}`}>{p.name}</Link></li>
-        ))}
+      {species.map((specie) => {
+          // Извлекаем id фильма из URL
+          const specieId = specie.url.split("/").slice(-2, -1)[0];
+          return (
+            <li key={specie.url}>
+              {/* Передаем весь объект фильма через state */}
+              <Link to={`/species/${specieId}`} state={{ specie }}>
+                {specie.name}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

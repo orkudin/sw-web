@@ -1,3 +1,5 @@
+import "../styles/PaginationBar.css";
+
 interface PaginationProps {
   page: number;
   setPage: (page: number) => void;
@@ -10,13 +12,21 @@ const Pagination = ({ page, setPage, totalCount, itemsPerPage }: PaginationProps
 
   return (
     <div className="pagination">
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+      <button
+        className="pagination-button"
+        onClick={() => setPage(page - 1)}
+        disabled={page === 1}
+      >
         Назад
       </button>
-      <span>
+      <span className="pagination-info">
         Страница {page} из {totalPages}
       </span>
-      <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+      <button
+        className="pagination-button"
+        onClick={() => setPage(page + 1)}
+        disabled={page === totalPages}
+      >
         Вперед
       </button>
     </div>

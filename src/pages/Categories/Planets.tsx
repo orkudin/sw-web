@@ -4,6 +4,7 @@ import { Planet } from "../../types/Planet";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/PaginationBar";
 import useSwapiPagination from "../../hooks/useSwapiPagination";
+import "../../styles/Resource.css";
 
 const Planets = () => {
   const [page, setPage] = useState(1);
@@ -18,23 +19,36 @@ const Planets = () => {
   if (loading) return <Loader />;
   if (error) return <div>Ошибка: {String(error)}</div>;
 
-  return (
-    <div>
-      <h2>Планеты</h2>
-      <ul>
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <div>Ошибка: {String(error)}</div>
+  ) : (
+    <div className="resource-container">
+      <h2 className="resource-title">Планеты</h2>
+      <div className="resource-list">
         {planets.map((planet) => {
-          // Извлекаем id фильма из URL
+          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
           const planetId = planet.url.split("/").slice(-2, -1)[0];
           return (
-            <li key={planet.url}>
-              {/* Передаем весь объект фильма через state */}
-              <Link to={`/planets/${planetId}`} state={{ planet }}>
-                {planet.name}
-              </Link>
-            </li>
+            <Link
+              key={planet.url}
+              to={`/planets/${planetId}`}
+              state={{ planet }}
+              className="resource-card"
+            >
+              <div className="card-content">
+                <h3 className="resource-name">{planet.name}</h3>
+                <p className="resource-info">
+                  {planet.population && `Популяция: ${planet.population}`}
+                  <br />
+                  {planet.terrain && `Природа: ${planet.terrain}`}
+                </p>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Pagination
         page={page}
         setPage={setPage}

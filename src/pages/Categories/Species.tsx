@@ -4,33 +4,49 @@ import type { Species as SpeciesType } from "../../types/Species"; // <-- Исп
 import { Link } from "react-router-dom";
 import useSwapiPagination from "../../hooks/useSwapiPagination";
 import Pagination from "../../components/PaginationBar";
+import "../../styles/Resource.css";
 
 const Species = () => {
   const [page, setPage] = useState(1);
-  const { data: species, totalCount, loading, error } = useSwapiPagination<SpeciesType>("species", page);
+  const {
+    data: species,
+    totalCount,
+    loading,
+    error,
+  } = useSwapiPagination<SpeciesType>("species", page);
   const itemsPerPage = 10; // API возвращает 10 элементов на страницу по умолчанию
 
-  if (loading) return <Loader />;
-  if (error) return <div>Ошибка: {String(error)}</div>;
-
-  if (loading) return <Loader />;
-  return (
-    <div>
-      <h2>Расы</h2>
-      <ul>
-      {species.map((specie) => {
-          // Извлекаем id фильма из URL
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <div>Ошибка: {String(error)}</div>
+  ) : (
+    <div className="resource-container">
+      <h2 className="resource-title">Расы</h2>
+      <div className="resource-list">
+        {species.map((specie) => {
+          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
           const specieId = specie.url.split("/").slice(-2, -1)[0];
           return (
-            <li key={specie.url}>
-              {/* Передаем весь объект фильма через state */}
-              <Link to={`/species/${specieId}`} state={{ specie }}>
-                {specie.name}
-              </Link>
-            </li>
+            <Link
+              key={specie.url}
+              to={`/people/${specieId}`}
+              state={{ specie }}
+              className="resource-card"
+            >
+              <div className="card-content">
+                <h3 className="resource-name">{specie.name}</h3>
+                <p className="resource-info">
+                  {specie.classification && `Классификация: ${specie.classification}`}
+                  <br />
+                  {specie.language &&
+                    `Язык: ${specie.language}`}
+                </p>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Pagination
         page={page}
         setPage={setPage}
@@ -39,7 +55,6 @@ const Species = () => {
       />
     </div>
   );
-  
 };
 
 export default Species;

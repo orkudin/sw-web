@@ -1,5 +1,5 @@
-// components/RelatedList.tsx
 import RelatedEntity from "./RelatedEntity";
+import "../styles/RelatedList.css";
 
 interface RelatedListProps {
   title: string;
@@ -8,11 +8,11 @@ interface RelatedListProps {
 
 const RelatedList = ({ title, urls }: RelatedListProps) => {
   return (
-    <div>
-      <h4>{title.toUpperCase()}</h4>
-      <ul>
+    <div className="related-list">
+      <h4 className="related-list-title">{title.toUpperCase()}</h4>
+      <ul className="related-list-items">
         {urls.map((url) => (
-          <li key={url}>
+          <li key={url} className="related-list-item">
             <RelatedEntity url={url} />
           </li>
         ))}

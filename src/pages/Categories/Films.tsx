@@ -4,33 +4,47 @@ import { Film } from "../../types/Film";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/PaginationBar";
 import useSwapiPagination from "../../hooks/useSwapiPagination";
+import "../../styles/Resource.css";
 
 const Films = () => {
   const [page, setPage] = useState(1);
-  const { data: films, totalCount, loading, error } = useSwapiPagination<Film>("films", page);
+  const {
+    data: films,
+    totalCount,
+    loading,
+    error,
+  } = useSwapiPagination<Film>("films", page);
   const itemsPerPage = 10; // API возвращает 10 элементов на страницу по умолчанию
 
-  if (loading) return <Loader />;
-  if (error) return <div>Ошибка: {String(error)}</div>;
-
-  if (loading) return <Loader />;
-  return (
-    <div>
-      <h2>Фильмы</h2>
-      <ul>
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <div>Ошибка: {String(error)}</div>
+  ) : (
+    <div className="resource-container">
+      <h2 className="resource-title">Фильмы</h2>
+      <div className="resource-list">
         {films.map((film) => {
-          // Извлекаем id фильма из URL
           const filmId = film.url.split("/").slice(-2, -1)[0];
           return (
-            <li key={film.url}>
-              {/* Передаем весь объект фильма через state */}
-              <Link to={`/films/${filmId}`} state={{ film }}>
-                {film.title}
-              </Link>
-            </li>
+            <Link
+              key={film.url}
+              to={`/films/${filmId}`}
+              state={{ film }}
+              className="resource-card"
+            >
+              <div className="card-content">
+                <h3 className="resource-name">{film.title}</h3>
+                <p className="resource-info">
+                  {film.director && `Директор: ${film.director}`}
+                  <br />
+                  {film.release_date && `Дата релиза: ${film.release_date}`}
+                </p>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Pagination
         page={page}
         setPage={setPage}

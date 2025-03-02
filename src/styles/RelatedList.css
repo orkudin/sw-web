@@ -1,0 +1,36 @@
+.related-list {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fffef9; /* Тёплый светлый фон */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+  }
+  
+  .related-list-title {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    color: #d97b59; /* Акцентный тёплый цвет */
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+  }
+  
+  .related-list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .related-list-item {
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .related-list-item:hover {
+    background-color: #f0f0f0;
+  }
+  

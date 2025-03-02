@@ -1,0 +1,118 @@
+/* Контейнер страницы поиска */
+.search-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fffef9; /* светлый теплый фон */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Заголовок страницы */
+.search-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Форма поиска */
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #d97b59; /* теплый акцент */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #c06647;
+}
+
+/* Сообщения о загрузке, ошибке и отсутствии результатов */
+.search-loading,
+.search-error,
+.no-results {
+  text-align: center;
+  color: #555;
+  margin-top: 20px;
+}
+
+/* Контейнер с результатами */
+.search-results {
+  margin-top: 20px;
+}
+
+/* Стили для каждой категории результатов */
+.result-category {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Заголовок категории */
+.category-title {
+  font-size: 1.4rem;
+  color: #d97b59; /* акцентный цвет */
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* Стили для списка результатов */
+.result-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Элемент списка */
+.result-item {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Эффект при наведении на элемент */
+.result-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Ссылка на результат */
+.result-item a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.result-item a:hover {
+  color: #d97b59;
+}

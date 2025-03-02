@@ -1,12 +1,12 @@
 /* Контейнер страницы */
-.people-container {
+.resource-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 /* Заголовок страницы */
-.people-title {
+.resource-title {
   text-align: center;
   margin-bottom: 20px;
   font-size: 2rem;
@@ -14,7 +14,7 @@
 }
 
 /* Сетка карточек персонажей */
-.people-list {
+.resource-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -22,7 +22,7 @@
 }
 
 /* Карточка персонажа */
-.people-card {
+.resource-card {
   display: block;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -34,7 +34,7 @@
 }
 
 /* Эффект при наведении */
-.people-card:hover {
+.resource-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -47,14 +47,15 @@
 }
 
 /* Имя персонажа */
-.people-name {
+.resource-name {
+  text-align: center;
   margin: 0;
   font-size: 1.5rem;
   color: #222;
 }
 
 /* Дополнительная информация */
-.people-info {
+.resource-info {
   margin-top: 10px;
   font-size: 0.9rem;
   color: #555;

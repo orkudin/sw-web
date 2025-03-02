@@ -5,31 +5,52 @@ import Loader from "../../components/Loader";
 import { Vehicle } from "../../types/Vehicle";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/PaginationBar";
+import "../../styles/Resource.css";
 
 const Vehicles = () => {
   const [page, setPage] = useState(1);
-  const { data: vehicles, totalCount, loading, error } = useSwapiPagination<Vehicle>("vehicles", page);
+  const {
+    data: vehicles,
+    totalCount,
+    loading,
+    error,
+  } = useSwapiPagination<Vehicle>("vehicles", page);
   const itemsPerPage = 10; // API возвращает 10 элементов на страницу по умолчанию
 
   if (loading) return <Loader />;
   if (error) return <div>Ошибка: {String(error)}</div>;
 
-  return (
-    <div>
-      <h2>Транспорт</h2>
-      <ul>
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <div>Ошибка: {String(error)}</div>
+  ) : (
+    <div className="resource-container">
+      <h2 className="resource-title">Транспорт</h2>
+      <div className="resource-list">
         {vehicles.map((vehicle) => {
-          // Извлекаем id из URL, например: "https://swapi.dev/api/vehicles/4/" → "4"
+          // Извлекаем id персонажа из URL, например "https://swapi.dev/api/people/1/" → "1"
           const vehicleId = vehicle.url.split("/").slice(-2, -1)[0];
           return (
-            <li key={vehicle.url}>
-              <Link to={`/vehicles/${vehicleId}`} state={{ vehicle }}>
-                {vehicle.name}
-              </Link>
-            </li>
+            <Link
+              key={vehicle.url}
+              to={`/vehicles/${vehicleId}`}
+              state={{ vehicle }}
+              className="resource-card"
+            >
+              <div className="card-content">
+                <h3 className="resource-name">{vehicle.name}</h3>
+                <p className="resource-info">
+                  {vehicle.model && `Модель: ${vehicle.model}`}
+                  <br />
+                  {vehicle.manufacturer &&
+                    `Производитель: ${vehicle.manufacturer}`}
+                </p>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Pagination
         page={page}
         setPage={setPage}
